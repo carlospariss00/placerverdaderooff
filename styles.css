@@ -1,0 +1,45 @@
+.videos {
+  margin: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.volver {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff9aee; 
+  color: #000000;
+  border-radius: 6px; 
+  text-decoration: none; 
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.volver:hover { 
+  background: #ffd5f8; 
+}
+
+video {
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+
+  border-radius: 10px;
+  box-shadow: 0 0 10px #3f3f3f;
+}
