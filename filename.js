@@ -2,7 +2,7 @@ export async function onRequest(context) {
   const { env, params } = context;
 
   // El nombre del archivo viene de la URL, ejemplo: /videos/demo.mp4
-  const object = await env.mis-videos2.get(params.filename);
+  const object = await env.VIDEOS_BUCKET.get(params.filename);
 
   if (!object) {
     return new Response("Archivo no encontrado", { status: 404 });
