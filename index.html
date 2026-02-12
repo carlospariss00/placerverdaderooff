@@ -1,66 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PlacerVerdaderooff</title>
-  <!-- CSS INLINE - CERO request -->
-  <style>
-    body { background: #12121a; color: #ddd; font-family: sans-serif; padding: 20px; margin: 0; }
-    h1 { text-align: center; margin-bottom: 30px; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-    .video-item { background: #1a1a2e; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; }
-    .video-item:hover { background: #2a2a3e; }
-    .video-title { margin-top: 10px; font-size: 14px; }
-  </style>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Placerverdadero - Enlaces románticos y contenido especial para San Valentín">
+    <title>Placerverdadero</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <h1>Placerverdaderooff</h1>
-  <div class="gallery" id="gallery"></div>
 
-  <script>
-     // Videos con URLs DIRECTAS a R2 (no pasan por Vercel)
-        const videos = [
-            { id: 1, title: "Video 1", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 2, title: "Video 2", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 3, title: "Video 3", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 4, title: "Video 4", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 5, title: "Video 5", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 6, title: "Video 6", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 7, title: "Video 7", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 8, title: "Video 8", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 9, title: "Video 9", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 10, title: "Video 10", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 11, title: "Video 11", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 12, title: "Video 12", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-            { id: 13, title: "Video 13", src: "https://placerverdadero.xyz/placerverdadero-3/video0.mp4" },
-        ];
+<body class="theme-valentine">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>💕 Placerverdadero 💕</h1>
+            <p>Enlaces románticos y mucho más para este 14 de febrero</p>
+        </header>
 
-        function loadGallery() {
-            const gallery = document.getElementById('gallery');
-            
-            videos.forEach(video => {
-                const div = document.createElement('div');
-                div.className = 'video-item';
-                div.innerHTML = `
-                    <div>🎬</div>
-                    <div class="video-title">${video.title}</div>
-                `;
-                div.onclick = () => {
-                    // Redirección DIRECTA - no consume Edge Requests
-                    window.location.href = `play.html?video=${encodeURIComponent(video.src)}`;
-                };
-                gallery.appendChild(div);
-            });
+        <!-- Links List -->
+        <div class="links-list">
+            <h2 class="text-center mb-lg">Enlaces Disponibles</h2>
+            <!-- La lista se genera dinámicamente desde `links.js` -->
+            <ol class="numbered-links">
+                <!-- links.js insertará <li> -->
+            </ol>
+        </div>
+        
+        <!-- Accessibility Toggle -->
+        <div class="accessibility-controls" style="text-align: center; margin: var(--spacing-lg) 0;">
+            <button id="toggle-hearts" class="btn btn-primary" style="font-size: 0.9rem;">
+                💝 Toggle Corazones
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open secondary page in a new window with video URL parameter
+        function openSecondaryPage(videoUrl) {
+            const encodedUrl = encodeURIComponent(videoUrl);
+            window.open(`secondary.html?video=${encodedUrl}`, '_blank', 'width=1000,height=800,noopener,noreferrer');
         }
-
-        document.addEventListener('DOMContentLoaded', loadGallery);
-  </script>
-   
- 
-  
-
+        
+        // Toggle hearts effect for accessibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('toggle-hearts');
+            if (toggleBtn && window.heartsEffect) {
+                toggleBtn.addEventListener('click', function() {
+                    window.heartsEffect.toggle();
+                    this.textContent = window.heartsEffect ? '💝 Toggle Corazones' : '💔 Corazones Desactivados';
+                });
+            }
+        });
+    </script>
+    <script src="links.js" defer></script>
+    <script src="hearts.js" defer></script>
 </body>
 
 </html>
